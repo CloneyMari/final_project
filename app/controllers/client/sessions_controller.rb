@@ -7,7 +7,15 @@ class Client::SessionsController < Devise::SessionsController
   # def new
   #   super
   # end
-
+  def create
+    user = User.find_by(email: params[:user][:email])
+    if user&.client?
+      super
+    else
+      flash[:alert] = "Wrong email or password"
+      redirect_to new_user_session_path
+    end
+  end
   # POST /resource/sign_in
   # def create
   #   super
