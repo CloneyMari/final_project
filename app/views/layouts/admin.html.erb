@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>App</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+</head>
+
+<body>
+<% if current_admin_user %>
+  <ul class="nav justify-content-end">
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="#">Change Language</a>
+    </li>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Username</a>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">Profile</a></li>
+        <li><%= link_to 'Sign Out', destroy_admin_user_session_path, class: 'dropdown-item', data: { 'turbo-method': :delete } %></li>
+      </ul>
+    </li>
+  </ul>
+<% end %>
+<% if current_admin_user %>
+  <%= render 'layouts/sidebar'%>
+<% else %>
+  <%= yield %>
+<% end %>
+
+<style>
+    .list-group-item:hover {
+        cursor: pointer;
+        background-color: #999;
+        border: none;
+        color: #fff;
+    }
+
+    .w-0 {
+        width: 0px;
+    }
+
+    #CtrlLeft, #CtrlRight {
+        background-color: #999;
+        cursor: pointer;
+        transition: 0.4s;
+        -webkit-transition: 0.4s;
+        -moz-transition: 0.4s;
+    }
+
+    #CtrlLeft:hover, #CtrlRight:hover {
+        transform: rotate(180deg);
+        -webkit-transform: rotate(180deg);
+        -moz-transform: rotate(180deg);
+        -ms-transform: rotate(180deg);
+    }
+
+
+</style>
+<script>
+    document.getElementById("CtrlLeft").addEventListener("click", sideBarCtrl);
+    document.getElementById("CtrlRight").addEventListener("click", sideBarCtrl);
+
+    function sideBarCtrl() {
+        document.getElementById("SideBar").classList.toggle("w-0");
+        document.getElementById("SideBar").classList.toggle("w-25");
+        document.getElementById("Content").classList.toggle("offset-3");
+        document.getElementById("CtrlLeft").classList.toggle("d-none");
+        document.getElementById("CtrlRight").classList.toggle("d-none");
+        document.getElementById("accordion").classList.toggle("d-none");
+        document.getElementById("SideBarTitle").classList.toggle("d-none");
+    };
+
+
+    /*
+    hasClass = (el, cls) => {
+      return [...el.classList].includes(cls); //cls without dot
+    };
+    */
+</script>
+</body>
+</html>

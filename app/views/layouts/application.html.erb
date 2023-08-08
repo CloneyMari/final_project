@@ -1,18 +1,103 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>App</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>App</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
-  </head>
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+</head>
 
-  <body>
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
-    <%= yield %>
-  </body>
+<!--  Navbar-->
+<nav class="navbar bg-light fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Brand Image</a>
+
+
+    <nav class="ms-auto m-1" style="--bs-breadcrumb-divider: '';" aria-label="breadcrumb">
+      <ol class="breadcrumb m-lg-2 p-0">
+        <li class="breadcrumb-item">
+          <a class="nav-link" href="#">Coins</a></li>
+        </li>
+        <li class="breadcrumb-item">
+          <a class="nav-link" href="#">Claim</a></li>
+        </li>
+        <li class="breadcrumb-item">
+          <a class="nav-link" href="#">Language</a></li>
+        </li>
+      </ol>
+    </nav>
+    <% if current_user %>
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu View</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <li class="nav-item">
+              <a class="nav-link">Username:</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link">Email:</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link">Coins:</a></li>
+            </br>
+            </li>
+            <button type="button" class="btn btn-secondary">Cash In Now</button>
+            </br>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Settings
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Contact us</a></li>
+                <li><a class="dropdown-item" href="#">My Profile</a></li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                <li><%= link_to 'Sign Out', destroy_admin_user_session_path, class: 'dropdown-item', data: { 'turbo-method': :delete } %></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</nav>
+
+<!--  Footer-->
+<div class="py-5" style="height: 93vh">
+
+  <%= yield %>
+</div>
+
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
+
+
+<nav class="navbar navbar-expand-lg bg-light">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav m-lg-auto">
+        <a class="nav-link" href="#">Share</a>
+        <a class="nav-link" href="#">Invite</a>
+        <a class="nav-link" href="#">Lottery</a>
+        <a class="nav-link" href="#">Shop</a>
+        <% if current_user %>
+          <a class="nav-link" href="#">Me</a>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</nav>
 </html>

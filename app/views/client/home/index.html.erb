@@ -1,9 +1,80 @@
-<h1>Hello World!</h1>
-<p>Welcome to my page!</p>
+<!-- Carousel wrapper -->
 
-<% if user_signed_in? %>
-  <h2> Hello <%= current_user.email %> </h2>
-  <%= link_to 'Sign out', destroy_user_session_path, data: { 'turbo-method': :delete } %>
-<% else %>
-  <%= link_to 'Sign in', new_user_session_path %>
-<% end %>
+<div class="container">
+  <div class="w-100 p-5 rounded mx-auto d-block"
+       id="carouselBasicExample"
+       class="carousel slide carousel-fade"
+       data-mdb-ride="carousel"
+  >
+    <div class="carousel-inner">
+      <!-- Single item -->
+      <!--    <div class="carousel-item active">-->
+      <img
+        src="https://mdbcdn.b-cdn.net/img/Photos/Slides/img%20(15).webp"
+        class="d-block w-auto"
+        alt="Sunset Over the City"
+        />
+    </div>
+  </div>
+  <div>
+
+    <!--images-->
+    <div class="container h-auto">
+
+      <h1 class="my-4 text-center text-lg-left h-50">Announcement</h1>
+
+      <div class="row text-center text-lg-left">
+        <h4 class="my-4 text-center text-lg-left h-50">Winners Feedback</h4>
+        <div class="col-lg-3 col-md-4 col-xs-6">
+          <a href="#" class="d-block mb-4 h-100">
+            <img class="img-fluid img-thumbnail" src="http://placehold.it/400x300" alt="">
+          </a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-xs-6">
+          <a href="#" class="d-block mb-4 h-100">
+            <img class="img-fluid img-thumbnail" src="http://placehold.it/400x300" alt="">
+          </a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-xs-6">
+          <a href="#" class="d-block mb-4 h-100">
+            <img class="img-fluid img-thumbnail" src="http://placehold.it/400x300" alt="">
+          </a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-xs-6">
+          <a href="#" class="d-block mb-4 h-100">
+            <img class="img-fluid img-thumbnail" src="http://placehold.it/400x300" alt="">
+          </a>
+        </div>
+        <h4 class="my-4 text-center text-lg-left h-50">Coming soon</h4>
+        <div class="col-lg-3 col-md-4 col-xs-6">
+          <a href="#" class="d-block mb-4 h-100">
+            <img class="img-fluid img-thumbnail" src="http://placehold.it/400x300" alt="">
+          </a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-xs-6">
+          <a href="#" class="d-block mb-4 h-100">
+            <img class="img-fluid img-thumbnail" src="http://placehold.it/400x300" alt="">
+          </a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-xs-6">
+          <a href="#" class="d-block mb-4 h-100">
+            <img class="img-fluid img-thumbnail" src="http://placehold.it/400x300" alt="">
+          </a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-xs-6">
+          <a href="#" class="d-block mb-4 h-100">
+            <img class="img-fluid img-thumbnail" src="http://placehold.it/400x300" alt="">
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <% if user_signed_in? %>
+      <h2> Hello <%= current_user.email %> </h2>
+      <%= link_to 'Sign out', destroy_user_session_path, data: { 'turbo-method': :delete } %>
+    <% else %>
+      <%= link_to 'Sign in', new_user_session_path %>
+    <% end %>
+  </div>
+    <%= yield %>
+

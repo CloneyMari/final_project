@@ -1,0 +1,64 @@
+ <div class="container-fluid">
+    <div class="row">
+
+      <div id="SideBar" class="col w-25 min-vh-100 fixed-top border-end text-warning overflow-visible">
+
+        <div class="text-end my-3">
+          <span id="SideBarTitle" class="h3 float-start clearfix">System Management</span>
+
+          <svg id="CtrlLeft" class="bg-white" width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
+            <path d="M12 0c6.623 0 12 5.377 12 12s-5.377 12-12 12-12-5.377-12-12 5.377-12 12-12zm0 1c6.071 0 11 4.929 11 11s-4.929 11-11 11-11-4.929-11-11 4.929-11 11-11zm-3 5.753l6.44 5.247-6.44 5.263.678.737 7.322-6-7.335-6-.665.753z"/>
+          </svg>
+
+          <svg id="CtrlRight" class="bg-white d-none" width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
+            <path d="M12 0c6.623 0 12 5.377 12 12s-5.377 12-12 12-12-5.377-12-12 5.377-12 12-12zm0 1c6.071 0 11 4.929 11 11s-4.929 11-11 11-11-4.929-11-11 4.929-11 11-11zm3 5.753l-6.44 5.247 6.44 5.263-.678.737-7.322-6 7.335-6 .665.753z"/>
+          </svg>
+        </div>
+
+        <div id="accordion" class="accordion overflow-hidden" id="accordionExample">
+          <div class="accordion-item">
+            <%= link_to 'Home Page', admin_root_path, class: 'ps-3 py-3 list-group-item w-100 fw-bold'%>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-headert" id="headingTwo">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"><strong>
+                Member Management</strong>
+              </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">Users List</li>
+                  <li class="list-group-item">Item List</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingThree">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree"><strong>
+                Example 2 Management</strong>
+              </button>
+            </h2>
+            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">Example 1</li>
+                  <li class="list-group-item">Example 2</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="Content" class="col offset-3 p-5">
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
+        <%= yield %>
+      </div>
+
+    </div>
+  </div>

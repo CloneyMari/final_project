@@ -1,26 +1,42 @@
-<h2>Log in</h2>
+<!--form button-->
+<div class="container col-3 mt-5">
+  <div class="justify-content-center">
+    <!--    <div class="border border-1">-->
+    <div class="row m-2 text-center">
+      <!--        <div class="col-6">-->
+      <%#= link_to 'Login', new_user_session_path ,class: 'btn btn-primary' %>
+      <!--        </div>-->
+      <!--        <div class="col-6">-->
+      <%#= link_to 'Register', new_user_registration_path ,class: 'btn btn-primary btn btn-outline-primary', for:"btncheck2" %>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+      <!--        </div>-->
+      <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+        <!--          <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">-->
+        <!--          <label class="btn btn-outline-primary" for="btncheck1">Checkbox 1</label>-->
+        <%= link_to 'Login', new_user_session_path, class: 'btn btn-secondary ', for: "btncheck2" %>
+        <!--          <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off">-->
+        <!--          <label class="btn btn-outline-primary" for="btncheck2">Checkbox 2</label>-->
+        <%= link_to 'Register', new_user_registration_path, class: 'btn btn-light ', for: "btncheck2" %>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+      </div>
     </div>
-  <% end %>
+    <div class="p-4 mt-2">
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="field mb-3">
+          <%= f.label :email %><br/>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
+        </div>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
+        <div class="field mb-3">
+          <%= f.label :password %><br/>
+          <%= f.password_field :password, autocomplete: "current-password", class: 'form-control' %>
+        </div>
+
+        <div class="actions">
+          <%= f.submit "Log in", class: 'btn btn-secondary w-100' %>
+        </div>
+      <% end %>
+    </div>
   </div>
-<% end %>
-
-<%= render "client/shared/links" %>
+</div>
+</section>
