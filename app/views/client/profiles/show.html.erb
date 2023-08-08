@@ -1,0 +1,117 @@
+
+<div class="d-flex justify-content-center align-items-center" style="height: 80vh;">
+  <div class="text-start">
+    <div class="card-body">
+      <div class="card-body text-start d-flex flex-wrap align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+          <% if current_user && current_user.image.present? %>
+            <%= image_tag current_user.image.url, class: "avatar-image", style: "width: 300px; height: 300px;" %>
+          <% else %>
+            <%= image_tag "avatar.png", class: "avatar-image", style: "width: 300px; height: 300px;" %>
+          <% end %>
+
+          <div class="ms-3">
+            <p class="nav-link active" aria-current="page">
+              Username: <%= current_user ? current_user.username : '' %>
+            </p>
+            <p class="nav-link active" aria-current="page">
+              Email: <%= current_user ? current_user.email : '' %>
+            </p>
+            <p class="nav-link active" aria-current="page">
+              Phone Number: <%= current_user ? current_user.phone_number : '' %>
+            </p>
+            <p class="nav-link active" aria-current="page">
+              Coins: <%= current_user ? current_user.coins : '' %>
+            </p>
+          </div>
+        </div>
+
+        <div class="w-75 mt-auto">
+          <div class="d-flex justify-content-center">
+            <a href="#" class="btn btn-outline-secondary w-100">Cash in</a>
+          </div>
+          <div class="d-flex justify-content-center gap-1 mt-2">
+            <%= link_to "Edit Profile", edit_profiles_path, class: "btn btn-outline-secondary w-50" %>
+            <a href="#" class="btn btn-outline-secondary w-50">Address</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<div class="container mt-5">-->
+<!--  <div class="justify-content-center">-->
+<!--<div class="container-fluid">-->
+<!--<div class="p-auto text-left">-->
+<!--  <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">-->
+<!--    <li class="nav-item">-->
+<!--      <a class="nav-link">Username:</a>-->
+<!--    </li>-->
+<!--    <li class="nav-item">-->
+<!--      <a class="nav-link">Email:</a>-->
+<!--    </li>-->
+<!--    <li class="nav-item">-->
+<!--      <a class="nav-link">Coins:</a></li>-->
+<!--    </br>-->
+<!--    </li>-->
+<!--  </ul>-->
+<!--  <button type="button" class="btn btn-secondary">Cash In Now</button></br>-->
+<!--  <a class="btn btn-primary" href="" role="button">Call to action</a>-->
+<!--</div>-->
+
+<!--</div>-->
+<!--  </div>-->
+<!--</div>-->
+
+
+<!--<div class="p-5 text-center">-->
+<!--  <div class="p-auto text-left">-->-->
+<!--    <ul class="navbar-nav justify-content-end">-->
+<!--      <li class="nav-item">-->
+<!--        <a class="nav-link">Username:</a>-->
+<!--      </li>-->
+<!--      <li class="nav-item">-->
+<!--        <a class="nav-link">Email:</a>-->
+<!--      </li>-->
+<!--      <li class="nav-item">-->
+<!--        <a class="nav-link">Coins:</a></li>-->
+<!--      </br>-->
+<!--      </li>-->
+<!--    </ul>-->
+
+<!-- Jumbotron -->
+<!--<div class="container col-3 mt-5 w-auto">-->
+<!--<div class="row m-2 p-5 text-center">-->
+<!--  <ul class="navbar-nav float-start">-->
+<!--  <li class="nav-item">-->
+<!--    <a class="nav-link">Username:</a>-->
+<!--  </li>-->
+<!--  <li class="nav-item">-->
+<!--    <a class="nav-link">Email:</a>-->
+<!--  </li>-->
+<!--  <li class="nav-item">-->
+<!--    <a class="nav-link">Coins:</a>-->
+<!--  </li></br>-->
+<!--  <ul>-->
+<!--    <a class="btn btn-primary" href="" role="button">Cash In Now</a>-->
+<!--    <a class="btn btn-primary" href="" role="button">Edit Profile</a>-->
+<!--    <a class="btn btn-primary" href="" role="button">Address</a>-->
+<!--  </ul>-->
+<!--</div>-->
+<!--</div>-->
+<!-- Jumbotron -->

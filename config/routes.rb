@@ -6,12 +6,14 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   constraints(ClientDomainConstraint.new) do
+    devise_for :users, controllers: {
+      registrations: 'client/registrations',
+      sessions: 'client/sessions'
+    }
     scope module: :client do
-      devise_for :users, controllers: {
-        registrations: 'client/registrations',
-        sessions: 'client/sessions'
-      }
+
       root 'home#index', as: :client_root
+      resource :profiles, only: [:edit, :update, :show]
     end
   end
 
@@ -20,7 +22,7 @@ Rails.application.routes.draw do
       devise_for :users, controllers: {
         sessions: 'admin/sessions'
       }, as: :admin
-      root 'home#index', as: :admin_root
+      root 'home#index'
     end
   end
 end
