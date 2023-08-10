@@ -1,0 +1,74 @@
+<div class="align-middle my-5">
+  <div class="container d-block justify-content-center w-50">
+    <%= form_with model: address, data: { controller: :location } do |form| %>
+      <% if address.errors.any? %>
+        <ul>
+          <% address.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      <% end %>
+      <div class="mb-3">
+        <%= form.label :name, class: 'form-label' %>
+        <%= form.text_field :name, class: 'form-control' %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :street_address, class: 'form-label' %>
+        <%= form.text_field :street_address, class: 'form-control' %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :is_default %>
+        <%= form.check_box :is_default %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :remark, class: 'form-label' %>
+        <%= form.text_area :remark, class: 'form-control' %>
+      </div>
+
+      <div class="form-check form-check-inline">
+        <%= form.collection_radio_buttons :genre, Address.genres, :first, :first, class: 'form-check-label'  %>
+      </div><br>
+
+      <div class="mb-3">
+        <%= form.label :address_region_id, class: 'form-label' %>
+        <%= form.collection_select :address_region_id,
+                                   Location::Region.all, :id, :name,
+                                   { prompt: 'Please select region' },
+                                   data: { location_target: 'selectedRegionId', action: 'change->location#fetchProvinces' }, class: 'form-control' %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :address_province_id, class: 'form-label' %>
+        <%= form.collection_select :address_province_id,
+                                   [], nil, nil,
+                                   { prompt: 'Please select province' },
+                                   data: { location_target: 'selectProvinceId', action: 'change->location#fetchCities' }, class: 'form-control' %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :address_city_id, class: 'form-label' %>
+        <%= form.collection_select :address_city_id,
+                                   [], nil, nil,
+                                   { prompt: 'Please select city' },
+                                   data: { location_target: 'selectCityId', action: 'change->location#fetchBarangays' }, class: 'form-control' %>
+
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :address_barangay_id, class: 'form-label' %>
+        <%= form.collection_select :address_barangay_id,
+                                   [], nil, nil,
+                                   { prompt: 'Please select barangay' },
+                                   data: { location_target: 'selectBarangayId' }, class: 'form-control' %>
+      </div>
+
+      <div class="actions"><br>
+        <%= form.submit class: 'btn btn-secondary w-100' %>
+      </div>
+    <% end %>
+
+  </div>
+</div>
