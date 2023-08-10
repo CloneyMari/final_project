@@ -4,4 +4,8 @@ class Address::Province < ApplicationRecord
 
   belongs_to :region
   has_many :cities
+
+  def self.table_name_prefix
+    "address_"
+  end
 end
