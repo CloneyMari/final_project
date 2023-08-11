@@ -5,14 +5,17 @@ class Client::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
-  # def new
-  #   super
-  # end
+  def new
+    cookies[:promoter] ||= params[:promoter]
+    super
+  end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    super
+    parent = User.find_by(email: cookies[:promoter])
+    self.resource.update(parent: parent)
+  end
 
   # GET /resource/edit
   # def edit

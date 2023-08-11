@@ -23,11 +23,12 @@
     <div class="p-4 mt-2">
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
         <%= render "client/shared/error_messages", resource: resource %>
+        <% if cookies[:promoter].present? %>
         <div class="field mb-3">
           <%= label_tag :promoter %><br/>
-          <%= email_field_tag :promoter, '', autofocus: true, autocomplete: "email", class: 'form-control' %>
+          <%= email_field_tag :promoter, cookies[:promoter], class: 'form-control', readonly: true  %>
         </div>
-
+        <% end %>
         <div class="field mb-3">
           <%= f.label :email %><br/>
           <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>

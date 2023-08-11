@@ -15,6 +15,7 @@ Rails.application.routes.draw do
       root 'home#index', as: :client_root
       resource :profiles, only: [:edit, :update, :show]
       resources :addresses, except: :show
+      resource :invite, only: :show
     end
   end
 

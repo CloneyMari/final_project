@@ -27,6 +27,11 @@
         <li class="breadcrumb-item">
           <a class="nav-link" href="#">Language</a></li>
         </li>
+        <% unless current_user %>
+          <li class="breadcrumb-item">
+            <%= link_to 'Sign In', new_user_session_path, class: 'nav-link' %>
+          </li>
+        <% end %>
       </ol>
     </nav>
     <% if current_user %>
@@ -62,7 +67,7 @@
                 <li>
                   <hr class="dropdown-divider">
                 </li>
-                <li><%= link_to 'Sign Out', destroy_admin_user_session_path, class: 'dropdown-item', data: { 'turbo-method': :delete } %></li>
+                <li><%= link_to 'Sign Out', destroy_user_session_path, class: 'dropdown-item', data: { 'turbo-method': :delete } %></li>
               </ul>
             </li>
           </ul>
@@ -71,18 +76,14 @@
     <% end %>
   </div>
 </nav>
-
+<p class="alert"><%= alert %></p>
+<p class="notice"><%= notice %></p>
 <!--  Footer-->
-<div class="py-5" style="height: 93vh">
-
+<div class="py-5">
   <%= yield %>
 </div>
 
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
-
-
-<nav class="navbar navbar-expand-lg bg-light">
+<nav class="navbar navbar-expand-lg bg-light fixed-bottom">
   <div class="container-fluid">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -90,14 +91,15 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav m-lg-auto">
         <a class="nav-link" href="#">Share</a>
-        <a class="nav-link" href="#">Invite</a>
+        <%= link_to 'Invite', invite_path, class: 'nav-link' %>
         <a class="nav-link" href="#">Lottery</a>
         <a class="nav-link" href="#">Shop</a>
         <% if current_user %>
-          <a class="nav-link" href="#">Me</a>
+          <%= link_to 'Me', profiles_path, class: 'nav-link' %>
         <% end %>
       </div>
     </div>
   </div>
 </nav>
+
 </html>
