@@ -1,0 +1,52 @@
+<div class="align-middle my-5">
+  <div class="container d-block justify-content-center w-50">
+    <%= form_with model: item, url: url, method: method, data: { controller: :location } do |form| %>
+      <% if item.errors.any? %>
+        <ul>
+          <% item.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      <% end %>
+      <div class="mb-3">
+        <%= form.label :name, class: 'form-label' %>
+        <%= form.text_field :name, class: 'form-control' %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :quantity, class: 'form-label' %>
+        <%= form.number_field :quantity, class: 'form-control' %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :minimum_bets, class: 'form-label' %>
+        <%= form.number_field :minimum_bets, class: 'form-control' %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :online_at, class: 'form-label' %>
+        <%= form.datetime_field :online_at, class: 'form-control' %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :offline_at, class: 'form-label' %>
+        <%= form.datetime_field :offline_at, class: 'form-control' %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :start_at, class: 'form-label' %>
+        <%= form.datetime_field :start_at, class: 'form-control' %>
+      </div>
+
+      <div class="form-check form-check-inline">
+        <%= form.label :status, class: 'form-label' %>
+        <%= form.collection_radio_buttons :status, Item.statuses, :first, :first, class: 'form-check-label'  %>
+      </div><br>
+
+      <div class="actions"><br>
+        <%= form.submit class: 'btn btn-secondary w-100' %>
+      </div>
+    <% end %>
+
+  </div>
+</div>

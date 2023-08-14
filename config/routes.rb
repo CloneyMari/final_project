@@ -26,6 +26,7 @@ Rails.application.routes.draw do
       }, as: :admin
       root 'home#index'
       resources :users, only: :index
+      resources :items, except: :show
     end
   end
 

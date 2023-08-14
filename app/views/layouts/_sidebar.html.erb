@@ -20,7 +20,7 @@
             <%= link_to 'Home Page', admin_root_path, class: 'ps-3 py-3 list-group-item w-100 fw-bold'%>
           </div>
           <div class="accordion-item">
-            <h2 class="accordion-headert" id="headingTwo">
+            <h2 class="accordion-header" id="headingTwo">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"><strong>
                 Member Management</strong>
               </button>
@@ -28,8 +28,8 @@
             <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
               <div class="accordion-body">
                 <ul class="list-group list-group-flush">
-                  <%= link_to 'Users List', admin_users_path, class: 'list-group-item' %>
-                  <li class="list-group-item">Item List</li>
+                  <%= link_to 'User List', admin_users_path, class: 'list-group-item' %>
+                  <%= link_to 'Item List', admin_items_path, class: 'list-group-item' %>
                 </ul>
               </div>
             </div>
