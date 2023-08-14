@@ -1,4 +1,5 @@
 class Client::AddressesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_address, only: [:edit, :update, :destroy]
 
   def index
@@ -24,7 +25,7 @@ class Client::AddressesController < ApplicationController
   def edit; end
 
   def update
-    if @address.update(post_params)
+    if @address.update(address_params)
       flash[:notice] = 'Address updated successfully'
       redirect_to addresses_path
     else

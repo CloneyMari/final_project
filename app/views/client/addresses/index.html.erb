@@ -5,7 +5,6 @@
   <td>Name</td>
   <td>Street Address</td>
   <td>Default</td>
-  <td>User</td>
   <td>Remark</td>
   <td>Genre</td>
   <td>Address</td>
@@ -15,11 +14,16 @@
       <td><%= address.name %></td>
       <td><%= address.street_address %></td>
       <td><%= address.is_default %></td>
-      <td><%= address.user_id %></td>
       <td><%= address.remark %></td>
       <td><%= address.genre %></td>
       <td><%= "#{address.street_address}, #{address.barangay&.name}, #{address.city&.name}, #{address.province&.name}, #{address.region&.name}" %></td>
+      <td>
+        <%= link_to 'Edit', edit_address_path(address) %>
+        <%= button_to 'Delete', address_path(address), method: :delete %>
+      </td>
     </tr>
-  <% end %>
+
+
+<% end %>
 </table>
 
