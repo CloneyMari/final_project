@@ -25,6 +25,7 @@ Rails.application.routes.draw do
         sessions: 'admin/sessions'
       }, as: :admin
       root 'home#index'
+      resources :users, only: :index
     end
   end
 

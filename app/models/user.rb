@@ -15,5 +15,5 @@ class User < ApplicationRecord
   }
   enum role: { client: 0, admin: 1 }
   has_many :children, class_name: 'User', foreign_key: :parent_id
-  belongs_to :parent, class_name: 'User', foreign_key: :parent_id, optional: true
+  belongs_to :parent, class_name: 'User', foreign_key: :parent_id, optional: true, counter_cache: :children_members
 end

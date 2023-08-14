@@ -1,0 +1,28 @@
+<h1>Users List</h1>
+<table class="table">
+  <thead>
+  <td>Parent Email</td>
+  <td>Email</td>
+  <td>Total Deposit</td>
+  <td>Member Total Deposits</td>
+  <td>Coins</td>
+  <td>Total Used Coins</td>
+  <td>Children Members</td>
+  <td>Phone Number</td>
+  </thead>
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= user.parent&.email %></td>
+      <td><%= user.email %></td>
+      <td><%= user.total_deposit %></td>
+      <td></td>
+      <td><%= user.coins %></td>
+      <td></td>
+      <td><%= user.children_members %></td>
+      <td><%= user.phone_number %></td>
+    </tr>
+  <% end %>
+</table>
+
+
+
