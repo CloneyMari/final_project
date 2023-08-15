@@ -1,0 +1,10 @@
+<%= form_with model: category, url: path, data: { turbo: false } do |form| %>
+
+  <%= form.label :name, class: 'form-label' %>
+  <%= form.text_field :name, class: 'form-control' %><br>
+  <%= form.submit class: 'btn btn-secondary w-100' %>
+
+<% end %>
+
+
+

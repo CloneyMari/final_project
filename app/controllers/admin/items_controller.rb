@@ -2,7 +2,7 @@ class Admin::ItemsController < AdminController
   before_action :set_item, only: [:edit, :update, :destroy]
 
   def index
-    @items = Item.all
+    @items = Item.includes(:categories).all
   end
 
   def new
@@ -21,6 +21,7 @@ class Admin::ItemsController < AdminController
   end
 
   def edit; end
+
   def update
     if @item.update(item_params)
       flash[:notice] = 'Item updated successfully'
@@ -44,6 +45,6 @@ class Admin::ItemsController < AdminController
 
   def item_params
     params.require(:item).permit(:image, :name, :quantity, :minimum_bets,
-                                  :online_at, :offline_at, :status, :start_at)
+                                 :online_at, :offline_at, :status, :start_at, category_ids: [])
   end
 end

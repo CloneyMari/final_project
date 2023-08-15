@@ -6,6 +6,8 @@ class Item < ApplicationRecord
   validates :minimum_bets, numericality: { greater_than: 0 }
   enum status: { active: 0, inactive: 1 }
 
+  has_many :item_category_ships
+  has_many :categories, through: :item_category_ships
   def destroy
     update(deleted_at: Time.current)
   end
