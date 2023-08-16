@@ -26,7 +26,14 @@ Rails.application.routes.draw do
       }, as: :admin
       root 'home#index'
       resources :users, only: :index
-      resources :items, except: :show
+      resources :items, except: :show do
+        member do
+          put :start
+          put :pause
+          put :end
+          put :cancel
+        end
+      end
       resources :categories, except: :show
     end
   end
