@@ -92,7 +92,7 @@
       <div class="navbar-nav m-lg-auto">
         <a class="nav-link" href="#">Share</a>
         <%= link_to 'Invite', invite_path, class: 'nav-link' %>
-        <a class="nav-link" href="#">Lottery</a>
+        <%= link_to 'Lottery', lottery_index_path, class: 'nav-link' %>
         <a class="nav-link" href="#">Shop</a>
         <% if current_user %>
           <%= link_to 'Me', profiles_path, class: 'nav-link' %>

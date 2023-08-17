@@ -16,6 +16,7 @@ Rails.application.routes.draw do
       resource :profiles, only: [:edit, :update, :show]
       resources :addresses, except: :show
       resource :invite, only: :show
+      resources :lottery
     end
   end
 
