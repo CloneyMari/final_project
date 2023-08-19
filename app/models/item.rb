@@ -11,6 +11,8 @@ class Item < ApplicationRecord
 
   has_many :item_category_ships
   has_many :categories, through: :item_category_ships
+  has_many :bets
+
   aasm column: :state do
     state :pending, initial: true
     state :starting, :paused, :ended, :cancelled
@@ -30,7 +32,7 @@ class Item < ApplicationRecord
     end
 
     event :cancel do
-      transitions from: :starting, to: :cancelled
+      transitions from: :starting, to: :cancelled, success: :cancel_bets
     end
   end
 
@@ -53,5 +55,11 @@ class Item < ApplicationRecord
 
   def destroy
     update(deleted_at: Time.current)
+  end
+
+  def cancel_bets
+    bets.each do |bet|
+      bet.cancel if bet.may_cancel?
+    end
   end
 end

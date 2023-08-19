@@ -7,6 +7,8 @@ class User < ApplicationRecord
 
   has_many :addresses
 
+  has_many :bets
+
   validates :phone_number, phone: {
     possible: true,
     allow_blank: true,

@@ -36,6 +36,9 @@ Rails.application.routes.draw do
         end
       end
       resources :categories, except: :show
+      resources :bets, only: :index do
+        put :cancel
+      end
     end
   end
 
