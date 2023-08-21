@@ -1,0 +1,60 @@
+<%= form_tag admin_winners_path, data: { turbo: false }, method: :get do %>
+  <div class="row">
+    <div class="col-3">
+      <%= label_tag :serial_number, 'Serial Number', class: 'form-label' %>
+      <%= text_field_tag :serial_number, params[:serial_number], class: 'form-control' %>
+    </div>
+
+    <div class="col-5">
+      <%= label_tag :email, 'Email', class: 'form-label' %>
+      <%= text_field_tag :email, params[:email], class: 'form-control' %>
+    </div>
+
+    <div class="col-4">
+      <%= label_tag :state, 'State', class: 'form-label' %>
+      <%= select_tag :state, options_for_select(Winner.aasm.states.map{|state| [state.name, state.name]}, params[:state]),  include_blank: 'all', class: 'form-control' %>
+    </div>
+
+    <div class="col-4">
+      <%= label_tag :start_date, 'Start Date', class: 'form-label' %>
+      <%= datetime_field_tag :start_date, params[:start_date], class: 'form-control' %>
+    </div>
+
+    <div class="col-4">
+      <%= label_tag :end_date, 'End Date', class: 'form-label' %>
+      <%= datetime_field_tag :end_date, params[:end_date], class: 'form-control' %>
+    </div>
+
+    <div class="my-3">
+      <%= submit_tag 'Search', class: 'btn btn-secondary'%>
+    </div>
+  </div>
+<% end %>
+
+<table class="table">
+  <thead>
+  <tr>
+    <th>Serial Number</th>
+    <th>User Email</th>
+    <th>State</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @winners.each do |winner| %>
+    <tr>
+      <td><%= winner.bet.serial_number %></td>
+      <td><%= winner.user.email %></td>
+      <td><%= winner.created_at %></td>
+      <td>
+        <%= button_to 'Submit', admin_winners_path(id:winner), method: :put if winner.may_submit? %>
+        <%= button_to 'Pay', admin_pay_winners_path(winner), method: :put if winner.may_pay? %>
+        <%= button_to 'Ship', ship_admin_winners_path(winner), method: :put if winner.may_ship? %>
+        <%= button_to 'Deliver', deliver_admin_winners_path(winner), method: :put if winner.may_deliver? %>
+        <%= button_to 'Publish', publish_admin_winners_path(winner), method: :put if winner.may_publish? %>
+        <%= button_to 'Remove Publish', remove_publish_admin_winners_path(winner), method: :put if winner.may_remove_publish? %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

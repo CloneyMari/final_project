@@ -16,7 +16,7 @@ Rails.application.routes.draw do
       resource :profiles, only: [:edit, :update, :show]
       resources :addresses, except: :show
       resource :invite, only: :show
-      resources :lottery
+      resources :lottery, only: [ :show, :index, :create]
     end
   end
 
@@ -36,6 +36,16 @@ Rails.application.routes.draw do
         end
       end
       resources :categories, except: :show
+      resources :winners, only: :index do
+        member do
+         put :submit
+         put :pay
+         put :ship
+         put :deliver
+         put :publish
+         put :remove_publish
+        end
+      end
       resources :bets, only: :index do
         put :cancel
       end

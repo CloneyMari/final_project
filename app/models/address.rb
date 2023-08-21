@@ -2,6 +2,7 @@ class Address < ApplicationRecord
   LIMIT = 5
   enum genre: { home: 0, office: 1 }
   belongs_to :user
+  has_many :winners
 
   belongs_to :region, class_name: 'Location::Region', foreign_key: 'address_region_id'
   belongs_to :province, class_name: 'Location::Province', foreign_key: 'address_province_id'
