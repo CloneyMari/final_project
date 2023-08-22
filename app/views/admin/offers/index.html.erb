@@ -1,0 +1,52 @@
+
+<%= form_tag admin_offers_path, data: { turbo: false }, method: :get do %>
+  <div class="row">
+    <div class="col-4">
+      <%= label_tag :genre, 'Genre', class: 'form-label' %>
+      <%= select_tag :genre, options_for_select(Offer.genres.map{|o|[o.first.humanize, o.first]}), prompt: 'Select genre', class: 'form-control' %>
+    </div>
+
+    <div class="col-4">
+      <%= label_tag :status, 'Status', class: 'form-label' %>
+      <%= select_tag :status, options_for_select(Offer.statuses), prompt: 'Select state', class: 'form-control' %>
+    </div>
+
+    <div class="my-3">
+      <%= submit_tag 'Search', class: 'btn btn-secondary'%>
+    </div>
+  </div>
+<% end %>
+
+
+<table class="table">
+
+  <thead>
+  <tr>
+    <th>Image</th>
+    <th>Name</th>
+    <th>Status</th>
+    <th>Genre</th>
+    <th>Amount</th>
+    <th>Coins</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @offers.each do |offer| %>
+    <tr>
+      <td><%= image_tag offer.image.url if offer.image.present? %></td>
+      <td><%= offer.name %></td>
+      <td><%= offer.status %></td>
+      <td><%= offer.genre %></td>
+      <td><%= offer.amount %></td>
+      <td><%= offer.coins %></td>
+      <td><%= link_to 'Edit', edit_admin_offer_path(offer), class: 'btn btn-secondary' %>
+     <%= button_to 'Delete', admin_offer_path(offer), method: :delete, class: 'btn btn-secondary' %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+
+<%= link_to 'New', new_admin_offer_path, class: 'btn btn-secondary' %>

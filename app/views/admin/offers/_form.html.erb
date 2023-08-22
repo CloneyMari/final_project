@@ -1,0 +1,47 @@
+<div class="align-middle my-5">
+  <div class="container d-block justify-content-center w-50">
+    <%= form_with model: offer, url: path, data: { turbo: false } do |form| %>
+      <% if offer.errors.any? %>
+        <ul>
+          <% offer.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      <% end %>
+
+      <div class="form-group mb-3">
+        <%= form.file_field :image, class: "form-control" %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :name, class: 'form-label' %>
+        <%= form.text_field :name, class: 'form-control' %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :amount, class: 'form-label' %>
+        <%= form.number_field :amount, class: 'form-control' %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :coins, class: 'form-label' %>
+        <%= form.number_field :coins, class: 'form-control' %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :genre %>
+        <%= form.select :genre, options_for_select(Offer.genres.map{|o|[o.first.humanize, o.first]}),  prompt: 'Select genre', class: 'form-control' %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :status %>
+        <%= form.select :status, options_for_select(Offer.statuses.map(&:first), params[:status]), prompt: 'Select status', class: 'form-control' %>
+      </div>
+
+      <div class="actions"><br>
+        <%= form.submit class: 'btn btn-secondary w-100' %>
+      </div>
+    <% end %>
+
+  </div>
+</div>

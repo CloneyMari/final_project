@@ -46,6 +46,7 @@ Rails.application.routes.draw do
          put :remove_publish
         end
       end
+      resources :offers, except: :show
       resources :bets, only: :index do
         put :cancel
       end
