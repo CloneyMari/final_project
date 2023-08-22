@@ -29,7 +29,7 @@ class Item < ApplicationRecord
     end
 
     event :end do
-      transitions from: :starting, to: :ended
+      transitions from: :starting, to: :ended, if: :minimum_bets_reached?, success: :pick_winner
     end
 
     event :cancel do
@@ -62,5 +62,18 @@ class Item < ApplicationRecord
     bets.each do |bet|
       bet.cancel if bet.may_cancel?
     end
+  end
+
+  def minimum_bets_reached?
+    bets.where(batch_count: batch_count).betting.count >= minimum_bets
+  end
+
+  def pick_winner
+    winner = bets.where(batch_count: batch_count).betting.sample
+    winner.win!
+    bets.excluding(winner).each do |bet|
+      bet.lose!
+    end
+    Winner.create(bet: winner, user: winner.user, item: self, item_batch_count: self.batch_count)
   end
 end
