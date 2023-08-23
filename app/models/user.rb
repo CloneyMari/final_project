@@ -9,6 +9,7 @@ class User < ApplicationRecord
 
   has_many :bets
   has_many :winners, class_name: 'User', foreign_key: 'admin_id'
+  has_many :orders
 
   validates :phone_number, phone: {
     possible: true,
