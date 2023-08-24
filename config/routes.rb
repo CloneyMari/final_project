@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       resources :addresses, except: :show
       resource :invite, only: :show
       resources :lottery, only: [ :show, :index, :create]
+      resources :shop
     end
   end
 

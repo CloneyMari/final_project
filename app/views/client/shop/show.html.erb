@@ -1,0 +1,19 @@
+<div class="container border border-black text-center card" >
+  <div class="w-25 text-center rounded mx-auto d-block card-header mt-2">
+    Offer
+  </div>
+  <div class="card-body">
+    <%= image_tag @offer.image.url, class: "card-img-top", style: "width: 150px; height: 150px;" if @offer.image.present? %>
+    <h3 class="card-title"><%= @offer.name %></h3>
+    <p class="card-text"><%= @offer.genre.humanize %></p>
+    <p class="card-text"><%= "$#{@offer.amount}" %></p>
+    <h5 class="card-text"><%= "Coins: #{@offer.coins}" %></h5>
+    <%= form_with(model: @order, url: shop_index_path, method: :post, data: { turbo: false }) do |form| %>
+      <%= form.hidden_field :offer_id, value: @offer.id %>
+      <%= form.submit "PURCHASE", class: "btn btn-secondary w-50 mt-2" %>
+    <% end %>
+  </div>
+  <div class="card-footer text-body-secondary">
+    <p class="card-text"><%= @offer.status %></p>
+  </div>
+</div>
