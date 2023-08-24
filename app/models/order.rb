@@ -3,7 +3,7 @@ class Order < ApplicationRecord
   enum genre: { deposit: 0, increase: 1, deduct: 2, bonus: 3, share: 4 }
 
   belongs_to :user
-  belongs_to :offer
+  belongs_to :offer, optional: true
   after_create :assign_serial_number
 
   aasm column: :state do
