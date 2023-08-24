@@ -47,6 +47,12 @@ Rails.application.routes.draw do
          put :remove_publish
         end
       end
+      resources :orders, only: :index do
+        member do
+          put :pay
+          put :cancel
+        end
+      end
       resources :offers, except: :show
       resources :bets, only: :index do
         put :cancel
