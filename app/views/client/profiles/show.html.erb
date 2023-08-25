@@ -1,13 +1,12 @@
-
 <div class="d-flex justify-content-center align-items-center" style="height: 80vh;">
   <div class="text-start">
-    <div class="card-body">
+    <div class="card">
       <div class="card-body text-start d-flex flex-wrap align-items-center justify-content-between">
         <div class="d-flex align-items-center">
           <%# if current_user && current_user.image.present? %>
-            <%#= image_tag current_user.image.url, class: "avatar-image", style: "width: 300px; height: 300px;" %>
+          <%#= image_tag current_user.image.url, class: "avatar-image", style: "width: 300px; height: 300px;" %>
           <%# else %>
-            <%#= image_tag "avatar.png", class: "avatar-image", style: "width: 300px; height: 300px;" %>
+          <%#= image_tag "avatar.png", class: "avatar-image", style: "width: 300px; height: 300px;" %>
           <%# end %>
 
           <div class="ms-3">
@@ -40,78 +39,66 @@
   </div>
 </div>
 
+<div class="container">
+  <div class="row" role="group" aria-label="Basic radio toggle button group">
+    <%= link_to 'Order History', profiles_path(category: :orders), class: 'btn btn-outline-secondary w-25' %>
+    <%= link_to 'Lottery History', profiles_path(category: :lottery), class: 'btn btn-outline-secondary w-25' %>
+    <%= link_to 'Winning History', profiles_path(category: :winners), class: 'btn btn-outline-secondary w-25' %>
+    <%= link_to 'Invitation History', profiles_path(category: :invites), class: 'btn btn-outline-secondary w-25' %>
+  </div>
 
 
+  <% if params[:category] == 'orders' %>
+    <% @orders.each do |order| %>
+      <div class="row">
+      <div class="card w-100">
+        <div class="card-body">
+          <div><b>Serial Number: </b><%= order.serial_number %></div>
+          <div><b>Coin: </b><%= order.coin %></div>
+          <div><b>Amount: </b><%= order.amount %></div>
+          <div><b>State: </b><%= order.state %></div>
+          <div><b>Date Created: </b><%= order.created_at %></div>
+        </div>
+      </div>
+      </div>
+    <% end %>
+  <% end %>
 
+    <% if params[:category] == 'lottery' %>
+      <% @bets.each do |bet| %>
+        <div class="card w-100" style=" margin-top:10px">
+          <div class="card-body">
+            <div><b>Serial Number: </b><%= bet.serial_number %></div>
+            <div><b>Coins: </b><%= bet.coins %></div>
+            <div><b>State: </b><%= bet.state %></div>
+            <div><b>Item Name: </b><%= bet.item.name %></div>
+            <div><b>Date Created: </b><%= bet.created_at %></div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
 
+      <% if params[:category] == 'winning' %>
+        <% @winnings.each do |winner| %>
+          <div class="card" style=" margin-top:10px">
+            <div class="card-body">
+              <div><b>Serial Number: </b><%= winner.bet.serial_number %></div>
+              <div><b>Item Name: </b><%= winner.item.name %></div>
+              <div><b>Date Created: </b><%= winner.created_at %></div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
 
-
-
-
-
-
-
-
-
-
-<!--<div class="container mt-5">-->
-<!--  <div class="justify-content-center">-->
-<!--<div class="container-fluid">-->
-<!--<div class="p-auto text-left">-->
-<!--  <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">-->
-<!--    <li class="nav-item">-->
-<!--      <a class="nav-link">Username:</a>-->
-<!--    </li>-->
-<!--    <li class="nav-item">-->
-<!--      <a class="nav-link">Email:</a>-->
-<!--    </li>-->
-<!--    <li class="nav-item">-->
-<!--      <a class="nav-link">Coins:</a></li>-->
-<!--    </br>-->
-<!--    </li>-->
-<!--  </ul>-->
-<!--  <button type="button" class="btn btn-secondary">Cash In Now</button></br>-->
-<!--  <a class="btn btn-primary" href="" role="button">Call to action</a>-->
-<!--</div>-->
-
-<!--</div>-->
-<!--  </div>-->
-<!--</div>-->
-
-
-<!--<div class="p-5 text-center">-->
-<!--  <div class="p-auto text-left">-->-->
-<!--    <ul class="navbar-nav justify-content-end">-->
-<!--      <li class="nav-item">-->
-<!--        <a class="nav-link">Username:</a>-->
-<!--      </li>-->
-<!--      <li class="nav-item">-->
-<!--        <a class="nav-link">Email:</a>-->
-<!--      </li>-->
-<!--      <li class="nav-item">-->
-<!--        <a class="nav-link">Coins:</a></li>-->
-<!--      </br>-->
-<!--      </li>-->
-<!--    </ul>-->
-
-<!-- Jumbotron -->
-<!--<div class="container col-3 mt-5 w-auto">-->
-<!--<div class="row m-2 p-5 text-center">-->
-<!--  <ul class="navbar-nav float-start">-->
-<!--  <li class="nav-item">-->
-<!--    <a class="nav-link">Username:</a>-->
-<!--  </li>-->
-<!--  <li class="nav-item">-->
-<!--    <a class="nav-link">Email:</a>-->
-<!--  </li>-->
-<!--  <li class="nav-item">-->
-<!--    <a class="nav-link">Coins:</a>-->
-<!--  </li></br>-->
-<!--  <ul>-->
-<!--    <a class="btn btn-primary" href="" role="button">Cash In Now</a>-->
-<!--    <a class="btn btn-primary" href="" role="button">Edit Profile</a>-->
-<!--    <a class="btn btn-primary" href="" role="button">Address</a>-->
-<!--  </ul>-->
-<!--</div>-->
-<!--</div>-->
-<!-- Jumbotron -->
+        <% if params[:category] == 'invites' %>
+          <% @members.each do |member| %>
+            <div class="card w-100" style=" margin-top:10px">
+              <div class="card-body">
+                <div><b>Username: </b><%= member.username %></div>
+                <div><b>Email: </b><%= member.email %></div>
+                <div><b>Date Invited: </b><%= member.created_at %></div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+</div>

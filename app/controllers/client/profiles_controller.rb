@@ -2,6 +2,10 @@ class Client::ProfilesController < ApplicationController
   before_action :authenticate_user!
 
   def show
+    @orders = current_user.orders if params[:category] == 'orders'
+    @bets = current_user.bets if params[:category] == 'lottery'
+    @members = current_user.children if params[:category] == 'invites'
+    @winnings = current_user.winners if params[:category] == 'winning'
   end
 
   def edit
