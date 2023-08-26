@@ -85,8 +85,11 @@
               <div><b>Serial Number: </b><%= winner.bet.serial_number %></div>
               <div><b>Item Name: </b><%= winner.item.name %></div>
               <div><b>Date Created: </b><%= winner.created_at %></div>
+              <div><b>State: </b><%= winner.state %></div>
             </div>
+            <%= link_to "Claim Prize", prize_path(winner), class: 'btn btn-secondary' if winner.may_claim? %>
           </div>
+
         <% end %>
       <% end %>
 
