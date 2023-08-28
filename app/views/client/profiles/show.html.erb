@@ -51,58 +51,59 @@
   <% if params[:category] == 'orders' %>
     <% @orders.each do |order| %>
       <div class="row">
-      <div class="card w-100">
-        <div class="card-body">
-          <div><b>Serial Number: </b><%= order.serial_number %></div>
-          <div><b>Coin: </b><%= order.coin %></div>
-          <div><b>Amount: </b><%= order.amount %></div>
-          <div><b>State: </b><%= order.state %></div>
-          <div><b>Date Created: </b><%= order.created_at %></div>
+        <div class="card w-100">
+          <div class="card-body">
+            <div><b>Serial Number: </b><%= order.serial_number %></div>
+            <div><b>Coin: </b><%= order.coin %></div>
+            <div><b>Amount: </b><%= order.amount %></div>
+            <div><b>State: </b><%= order.state %></div>
+            <div><b>Date Created: </b><%= order.created_at %></div>
+          </div>
+          <%= button_to 'Cancel Order', cancel_profiles_path(id: order), method: :put, class: 'btn btn-secondary w-100', data: { turbo: false } if order.may_cancel? %>
         </div>
-      </div>
       </div>
     <% end %>
   <% end %>
 
-    <% if params[:category] == 'lottery' %>
-      <% @bets.each do |bet| %>
-        <div class="card w-100" style=" margin-top:10px">
-          <div class="card-body">
-            <div><b>Serial Number: </b><%= bet.serial_number %></div>
-            <div><b>Coins: </b><%= bet.coins %></div>
-            <div><b>State: </b><%= bet.state %></div>
-            <div><b>Item Name: </b><%= bet.item.name %></div>
-            <div><b>Date Created: </b><%= bet.created_at %></div>
-          </div>
+  <% if params[:category] == 'lottery' %>
+    <% @bets.each do |bet| %>
+      <div class="card w-100" style=" margin-top:10px">
+        <div class="card-body">
+          <div><b>Serial Number: </b><%= bet.serial_number %></div>
+          <div><b>Coins: </b><%= bet.coins %></div>
+          <div><b>State: </b><%= bet.state %></div>
+          <div><b>Item Name: </b><%= bet.item.name %></div>
+          <div><b>Date Created: </b><%= bet.created_at %></div>
         </div>
-      <% end %>
+      </div>
     <% end %>
+  <% end %>
 
-      <% if params[:category] == 'winning' %>
-        <% @winnings.each do |winner| %>
-          <div class="card" style=" margin-top:10px">
-            <div class="card-body">
-              <div><b>Serial Number: </b><%= winner.bet.serial_number %></div>
-              <div><b>Item Name: </b><%= winner.item.name %></div>
-              <div><b>Date Created: </b><%= winner.created_at %></div>
-              <div><b>State: </b><%= winner.state %></div>
-            </div>
-            <%= link_to "Claim Prize", prize_path(winner), class: 'btn btn-secondary' if winner.may_claim? %>
-            <%= link_to "Share Feedback", prize_feedback_path(winner), class: 'btn btn-secondary' if winner.may_share? %>
-          </div>
+  <% if params[:category] == 'winning' %>
+    <% @winnings.each do |winner| %>
+      <div class="card" style=" margin-top:10px">
+        <div class="card-body">
+          <div><b>Serial Number: </b><%= winner.bet.serial_number %></div>
+          <div><b>Item Name: </b><%= winner.item.name %></div>
+          <div><b>Date Created: </b><%= winner.created_at %></div>
+          <div><b>State: </b><%= winner.state %></div>
+        </div>
+        <%= link_to "Claim Prize", prize_path(winner), class: 'btn btn-secondary' if winner.may_claim? %>
+        <%= link_to "Share Feedback", prize_feedback_path(winner), class: 'btn btn-secondary' if winner.may_share? %>
+      </div>
 
-        <% end %>
-      <% end %>
+    <% end %>
+  <% end %>
 
-        <% if params[:category] == 'invites' %>
-          <% @members.each do |member| %>
-            <div class="card w-100" style=" margin-top:10px">
-              <div class="card-body">
-                <div><b>Username: </b><%= member.username %></div>
-                <div><b>Email: </b><%= member.email %></div>
-                <div><b>Date Invited: </b><%= member.created_at %></div>
-              </div>
-            </div>
-          <% end %>
-        <% end %>
+  <% if params[:category] == 'invites' %>
+    <% @members.each do |member| %>
+      <div class="card w-100" style=" margin-top:10px">
+        <div class="card-body">
+          <div><b>Username: </b><%= member.username %></div>
+          <div><b>Email: </b><%= member.email %></div>
+          <div><b>Date Invited: </b><%= member.created_at %></div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
 </div>

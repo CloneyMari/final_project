@@ -23,6 +23,16 @@ class Client::ProfilesController < ApplicationController
     end
   end
 
+  def cancel
+    @order = Order.find(params[:id])
+    if @order.cancel!
+      flash[:notice] = 'Cancelled Successfully'
+    else
+      flash[:alert] = @order.errors.full_messages.join(', ')
+    end
+    redirect_to profiles_path(category: 'orders')
+  end
+
   private
 
   def client_params

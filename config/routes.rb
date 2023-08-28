@@ -13,7 +13,9 @@ Rails.application.routes.draw do
     scope module: :client do
 
       root 'home#index', as: :client_root
-      resource :profiles, only: [:edit, :update, :show]
+      resource :profiles, only: [:edit, :update, :show] do
+        put :cancel
+      end
       resources :addresses, except: :show
       resource :invite, only: :show
       resources :lottery, only: [:show, :index, :create]
