@@ -1,0 +1,11 @@
+<div class="container w-50">
+        <div class="card w-100">
+          <%= image_tag @winner.picture.url, class: "card-img-top" if @winner.picture.present? %>
+          <div class="card-body">
+            <p class="card-text"><%= @winner.user.email %></p>
+            <p class="card-text"><%= @winner.comment %></p>
+          </div>
+
+        </div>
+
+</div>

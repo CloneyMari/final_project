@@ -1,0 +1,26 @@
+<%= render 'layouts/banner' %>
+
+<div class="container">
+  <% @winners.each do |winner| %>
+    <%= link_to share_path(winner) do %>
+        <div class="card my-4 w-100" >
+
+          <div class="card-body">
+            <div class="container">
+            <div class="row">
+              <div class="col-4">
+            <%= image_tag winner.picture.url if winner.picture.present? %>
+              </div>
+              <div class="col-8">
+            <p class="card-text"><%= winner.user.email %></p>
+            <p class="card-text"><%= winner.comment %></p>
+              </div>
+            </div>
+            </div>
+          </div>
+
+        </div>
+    <% end %>
+  <% end %>
+
+</div>

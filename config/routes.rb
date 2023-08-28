@@ -18,6 +18,7 @@ Rails.application.routes.draw do
       resource :invite, only: :show
       resources :lottery, only: [:show, :index, :create]
       resources :shop
+      resources :shares, only: [:show, :index]
       resources :prize, only: [:show, :update] do
         resource :feedback, only: [:show, :update]
       end
