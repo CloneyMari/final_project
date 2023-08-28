@@ -88,6 +88,7 @@
               <div><b>State: </b><%= winner.state %></div>
             </div>
             <%= link_to "Claim Prize", prize_path(winner), class: 'btn btn-secondary' if winner.may_claim? %>
+            <%= link_to "Share Feedback", prize_feedback_path(winner), class: 'btn btn-secondary' if winner.may_share? %>
           </div>
 
         <% end %>
