@@ -47,12 +47,12 @@
       <td><%= winner.user.email %></td>
       <td><%= winner.created_at %></td>
       <td>
-        <%= button_to 'Submit', admin_winners_path(id:winner), method: :put if winner.may_submit? %>
-        <%= button_to 'Pay', admin_pay_winners_path(winner), method: :put if winner.may_pay? %>
-        <%= button_to 'Ship', ship_admin_winners_path(winner), method: :put if winner.may_ship? %>
-        <%= button_to 'Deliver', deliver_admin_winners_path(winner), method: :put if winner.may_deliver? %>
-        <%= button_to 'Publish', publish_admin_winners_path(winner), method: :put if winner.may_publish? %>
-        <%= button_to 'Remove Publish', remove_publish_admin_winners_path(winner), method: :put if winner.may_remove_publish? %>
+        <%= button_to 'Submit', submit_admin_winner_path(id:winner), data: { turbo: false }, method: :put if winner.may_submit? %>
+        <%= button_to 'Pay', pay_admin_winner_path(winner), data: { turbo: false }, method: :put if winner.may_pay? %>
+        <%= button_to 'Ship', ship_admin_winner_path(winner), data: { turbo: false }, method: :put if winner.may_ship? %>
+        <%= button_to 'Deliver', deliver_admin_winner_path(winner), data: { turbo: false }, method: :put if winner.may_deliver? %>
+        <%= button_to 'Publish', publish_admin_winner_path(winner), data: { turbo: false }, method: :put if winner.may_publish? %>
+        <%= button_to 'Remove Publish', remove_publish_admin_winner_path(winner), data: { turbo: false }, method: :put if winner.may_remove_publish? %>
       </td>
     </tr>
   <% end %>
