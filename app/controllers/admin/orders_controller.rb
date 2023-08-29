@@ -1,5 +1,6 @@
 class Admin::OrdersController < AdminController
   before_action :set_order, except: :index
+
   def index
     @orders = Order.includes(:user, :offer).all
     @orders = @orders.where(serial_number: params[:serial_number]) if params[:serial_number].present?
@@ -17,7 +18,6 @@ class Admin::OrdersController < AdminController
   end
 
   def pay
-    @order = Order.find(params[:id])
     if @order.pay!
       flash[:notice] = 'Order Successfully Paid'
     else
@@ -27,13 +27,17 @@ class Admin::OrdersController < AdminController
   end
 
   def cancel
-    @order = Order.find(params[:id])
     if @order.cancel!
       flash[:notice] = 'Cancelled successfully'
     end
     redirect_to admin_orders_path
   end
 
+  private
+
+  def set_order
+    @order = Order.find(params[:id])
+  end
 end
 
 
