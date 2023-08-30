@@ -45,7 +45,7 @@
     <tr>
       <td><%= winner.bet.serial_number %></td>
       <td><%= winner.user.email %></td>
-      <td><%= winner.created_at %></td>
+      <td><%= winner.state %></td>
       <td>
         <%= button_to 'Submit', submit_admin_winner_path(id:winner), data: { turbo: false }, method: :put if winner.may_submit? %>
         <%= button_to 'Pay', pay_admin_winner_path(winner), data: { turbo: false }, method: :put if winner.may_pay? %>

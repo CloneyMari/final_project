@@ -1,7 +1,7 @@
 <%= render 'layouts/banner' %>
 
 <div class="container h-auto">
-  <%= link_to 'All', lottery_index_path, class: "btn btn-secondary" %>
+  <%= link_to 'All', lottery_index_path, class: 'btn btn-secondary' %>
   <% Category.all.each do |category| %>
     <%= link_to category.name, lottery_index_path(category: category), class: "btn btn-secondary #{:active if params[:category] == category.id.to_s}" %>
   <% end %>
@@ -9,17 +9,17 @@
   <div class="row text-center text-lg-left">
     <% @items.each do |item| %>
       <%= link_to lottery_path(item) do %>
-      <div class="col-lg-3 col-md-4 col-xs-6">
-        <div class="card my-4" style="width: 18rem;">
-          <%= image_tag item.image.url, class: "card-img-top" if item.image.present? %>
-          <div class="card-body">
-            <p class="card-text"><%= item.name %></p>
-            <p class="card-text"><%= item.status %></p>
-          </div>
+        <div class="col-lg-3 col-md-4 col-xs-6">
+          <div class="card my-4" style="width: 18rem;">
+            <%= image_tag item.image.url, class: 'card-img-top' if item.image.present? %>
+            <div class="card-body">
+              <p class="card-text"><%= item.name %></p>
+              <p class="card-text"><%= item.status %></p>
+            </div>
 
+          </div>
         </div>
-      </div>
-        <% end %>
+      <% end %>
     <% end %>
 
   </div>

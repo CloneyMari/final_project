@@ -1,8 +1,7 @@
-<div class="container">
-  <div class="w-100 p-5 rounded mx-auto d-block">
-  <div class="col-lg-3 col-md-4 col-xs-6">
-    <div class="card my-4" style="width: 18rem;">
-      <%= image_tag @item.image.url, class: "card-img-top" if @item.image.present? %>
+<div class="container border border-black">
+  <div class="w-50 text-center rounded mx-auto d-block">
+    <div class="card my-4">
+      <%= image_tag @item.image.url, class: 'card-img-top' if @item.image.present? %>
       <div class="card-body">
         <div class="progress">
           <div class="progress-bar" role="progressbar" style="width: <%= @progress %>%" aria-valuenow="<%= @progress %>" aria-valuemin="0" aria-valuemax="100">
@@ -11,23 +10,27 @@
         </div>
         <p class="card-text"><%= @item.name %></p>
         <p class="card-text"><%= @item.status %></p>
+        <%= form_with model: @bet, url: lottery_index_path, data: { turbo: false } do |form| %>
+          <%= form.number_field :bet_count, class: 'form-control w-75 m-auto' %>
+          <%= hidden_field_tag :item_batch_count, value = @item.batch_count %>
+          <%= hidden_field_tag :item_id, value = @item.id %>
+          <%= form.submit :submit, class: 'w-50 my-3 btn btn-secondary' %>
+        <% end %>
+
+        <div class="container d-flex justify-content-center">
+        <table>
+          <thead>
+          <td>Serial Number</td>
+          </thead>
+          <% @item.bets.each do |bet| %>
+            <tr>
+              <td><%= bet.serial_number %></td>
+            </tr>
+          <% end %>
+        </table>
+        </div>
       </div>
     </div>
   </div>
-  </div>
-
-  <%= form_with model: @bet, url: lottery_index_path, data: { turbo: false } do |form| %>
-    <%= form.number_field :bet_count %>
-    <%= hidden_field_tag :item_batch_count, value = @item.batch_count %>
-    <%= hidden_field_tag :item_id, value = @item.id %>
-    <%= form.submit %>
-  <% end %>
 </div>
 
-<table class="table">
-  <% @item.bets.each do |bet| %>
-    <tr>
-     <td><%= bet.serial_number %></td>
-    </tr>
-  <% end %>
-</table>
