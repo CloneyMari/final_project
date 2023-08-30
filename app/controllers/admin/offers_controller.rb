@@ -3,6 +3,8 @@ class Admin::OffersController < AdminController
 
   def index
     @offers = Offer.all
+    @offers = @offers.where(genre: params[:genre]) if params[:genre].present?
+    @offers = @offers.where(status: params[:status]) if params[:status].present?
   end
 
   def new
